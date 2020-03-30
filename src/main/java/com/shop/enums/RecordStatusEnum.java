@@ -2,16 +2,16 @@ package com.shop.enums;
 
 public enum RecordStatusEnum {
 	
-	ACTIVE("ACTIVE", "Active", 1),
-	INACTIVE("INACTIVE", "Innactive", 2),
-	DEACTIVATE("DEACTIVATED", "Deactivated", 3),
-	MODIFIED("MODIFIED", "Modified", 4),
-	DELETED("DELETED", "Deleted", 5),
-	REJECTED("REJECTED", "Rejected", 6);
+	ACTIVE("ACTIVE", "Active", "1"),
+	INACTIVE("INACTIVE", "Innactive", "2"),
+	DEACTIVATE("DEACTIVATED", "Deactivated", "3"),
+	MODIFIED("MODIFIED", "Modified", "4"),
+	DELETED("DELETED", "Deleted", "5"),
+	REJECTED("REJECTED", "Rejected", "6");
 	
 	private String code;
 	private String description;
-	private int id;
+	private String id;
 	
 	
 	public String getCode() {
@@ -28,14 +28,14 @@ public enum RecordStatusEnum {
 		this.description = description;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
-	private RecordStatusEnum(String code, String description, int id) {
+	private RecordStatusEnum(String code, String description, String id) {
 		this.code = code;
 		this.description = description;
 		this.id = id;

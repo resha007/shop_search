@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 30, 2020 7:29:03 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.shop.domain.PackageHasItem" table="package_has_item" catalog="shop_search" optimistic-lock="version">
+        <composite-id name="id" class="com.shop.domain.PackageHasItemId">
+            <key-property name="packageId" type="int">
+                <column name="package_id" />
+            </key-property>
+            <key-property name="itemId" type="int">
+                <column name="item_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="item" class="com.shop.domain.Item" update="false" insert="false" fetch="select">
+            <column name="item_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="packageN" class="com.shop.domain.PackageN" update="false" insert="false" fetch="select">
+            <column name="package_id" not-null="true" />
+        </many-to-one>
+        <property name="qtyG" type="java.lang.Integer">
+            <column name="qty_g" />
+        </property>
+    </class>
+</hibernate-mapping>

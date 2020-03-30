@@ -36,8 +36,17 @@
                         <div class="input-group">
                             <div class="">
                                 <div class="input-group">
-                                    <label class="label">Shop Name</label>
+                                    <label class="label">Shop Name*</label>
                                     <input class="input--style-4" type="text" name="txtShopName" id="txtShopName" placeholder="Example Shop">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="input-group">
+                            <div class="">
+                                <div class="input-group">
+                                    <label class="label">Other Name</label>
+                                    <input class="input--style-4" type="text" name="txtOtherName" id="txtOtherName" placeholder="Example Shop">
                                 </div>
                             </div>
                             
@@ -45,18 +54,15 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Business Registration Number</label>
+                                    <label class="label">Business Registration Number*</label>
                                     <input class="input--style-4" type="text" name="txtBR" id="txtBR" placeholder="NPVS43127">
                                 </div>
                             </div>
                             <div class="col-2">
-                                <label class="label">Category</label>
+                                <label class="label">Category*</label>
                                 <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="cmbCategory" id="cmbCategory">
                                         <option disabled="disabled" selected="selected">Choose option</option>
-                                        <option>Subject 1</option>
-                                        <option>Subject 2</option>
-                                        <option>Subject 3</option>
                                     </select>
                                     <div class="select-dropdown"></div>
                                 </div>
@@ -64,25 +70,21 @@
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
-                                <label class="label">Province</label>
+                                <label class="label">Province*</label>
                                 <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="cmbProvince" id="cmbProvince">
                                         <option disabled="disabled" selected="selected">Choose option</option>
-                                        <option>Subject 1</option>
-                                        <option>Subject 2</option>
-                                        <option>Subject 3</option>
+                                        
                                     </select>
                                     <div class="select-dropdown"></div>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <label class="label">District</label>
+                                <label class="label">District*</label>
                                 <div class="rs-select2 js-select-simple select--no-search">
                                     <select name="cmbDistrict" id="cmbDistrict">
                                         <option disabled="disabled" selected="selected">Choose option</option>
-                                        <option>Subject 1</option>
-                                        <option>Subject 2</option>
-                                        <option>Subject 3</option>
+                                        
                                     </select>
                                     <div class="select-dropdown"></div>
                                 </div>
@@ -90,29 +92,57 @@
                         </div><br>
                         <div class="row row-space">
                             <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Opening Hours</label>
-                                    <input class="input--style-4" type="text" name="txtOpening" id="txtOpening" placeholder="">
+                                <label class="label">Area*</label>
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select name="cmbArea" id="cmbArea">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        
+                                    </select>
+                                    <div class="select-dropdown"></div>
                                 </div>
                             </div>
-                            <div class="col-2">
+                        </div><br>
+                        <div class="input-group">
+                            <div class="">
                                 <div class="input-group">
-                                    <label class="label">Opening Hours</label>
-                                    <input class="input--style-4" type="text" name="txtOpening" id="txtOpening" placeholder="">
+                                    <label class="label">Address*</label>
+                                    <input class="input--style-4" type="text" name="txtAddress" id="txtAddress" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-1">
+                                <div class="input-group">
+                                    <label class="label">Is 24 Hour</label>
+                                    <input class="input--style-4" type="checkbox" name="chk24" id="chk24">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Contact Number 1</label>
-                                    <input class="input--style-4" type="text" name="txtCon1" id="txtCon1" placeholder="" maxlength="10">
+                                    <label class="label">Opening Hours(From)</label>
+                                    <input class="input--style-4" type="time" name="txtOpening" id="txtOpening" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Opening Hours(To)</label>
+                                    <input class="input--style-4" type="time" name="txtOpening" id="txtOpening" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Contact Number 1*</label>
+                                    <input class="input--style-4" type="text" name="txtCon1" id="txtCon1" placeholder="07########" maxlength="10">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Contact Number 2</label>
-                                    <input class="input--style-4" type="text" name="txtCon2" id="txtCon2" placeholder="" maxlength="10">
+                                    <input class="input--style-4" type="text" name="txtCon2" id="txtCon2" placeholder="011#######" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -120,7 +150,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">WhatsApp/Viber Number</label>
-                                    <input class="input--style-4" type="text" name="txtWhatsapp" id="txtWhatsapp" placeholder="" maxlength="10">
+                                    <input class="input--style-4" type="text" name="txtWhatsapp" id="txtWhatsapp" placeholder="07########" maxlength="10">
                                 </div>
                             </div>
                             <div class="col-2">
@@ -133,22 +163,36 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Minimum Delivery Time(Hours)</label>
+                                    <label class="label">Minimum Delivery Time(Hours)*</label>
                                     <input class="input--style-4" type="number" name="txtDelMin" id="txtDelMin" placeholder="">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Maximum Delivery Time(Hours)</label>
+                                    <label class="label">Maximum Delivery Time(Hours)*</label>
                                     <input class="input--style-4" type="number" name="txtDelMax" id="txtDelMax" placeholder="">
                                 </div>
                             </div>
                         </div>
-                        <div class="input-group">
-                            <div class="">
+                        <div class="row row-space">
+                            <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Address</label>
-                                    <textarea class="input--style-4" name="txtAddress" id="txtAddress" ></textarea>
+                                    <label class="label">Delivery Area(KM)*</label>
+                                    <input class="input--style-4" type="number" name="txtDelArea" id="txtDelArea" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Website Address</label>
+                                    <input class="input--style-4" type="text" name="txtWeb" id="txtWeb" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Facebook Page Link</label>
+                                    <input class="input--style-4" type="text" name="txtFb" id="txtFb" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -159,7 +203,8 @@
                         
                         
                         
-                        <div class="row row-space">
+                        
+<!--                        <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Birthday</label>
@@ -210,9 +255,9 @@
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            <button class="btn btn--radius-2 btn--blue" type="button" id="add" name="add">Register</button>
                         </div>
                     </form>
                 </div>
@@ -226,9 +271,11 @@
     <script src="vendor/select2/select2.min.js"></script>
     <script src="vendor/datepicker/moment.min.js"></script>
     <script src="vendor/datepicker/daterangepicker.js"></script>
-
+ <!--sweet alerts-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <!-- Main JS-->
     <script src="js/global.js"></script>
+    <script src="js/custom.js"></script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 

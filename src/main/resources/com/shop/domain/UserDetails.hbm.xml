@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 30, 2020 7:29:03 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.shop.domain.UserDetails" table="user_details" catalog="shop_search" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userLevel" class="com.shop.domain.UserLevel" fetch="select">
+            <column name="user_level_id" not-null="true" />
+        </many-to-one>
+        <property name="fisrtName" type="string">
+            <column name="fisrt_name" length="200" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="200" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="200" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="200" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="200" />
+        </property>
+        <property name="userDetailscol" type="string">
+            <column name="user_detailscol" length="45" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="1" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <set name="shops" table="shop" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_details_id" not-null="true" />
+            </key>
+            <one-to-many class="com.shop.domain.Shop" />
+        </set>
+    </class>
+</hibernate-mapping>
