@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 30, 2020 7:29:03 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Mar 31, 2020 7:37:17 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.shop.domain.Shop" table="shop" catalog="shop_search" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -65,11 +65,11 @@
         <property name="createdDate" type="timestamp">
             <column name="created_date" length="19" />
         </property>
-        <property name="from" type="time">
-            <column name="from" length="8" />
+        <property name="fromTime" type="time">
+            <column name="from_time" length="8" />
         </property>
-        <property name="to" type="time">
-            <column name="to" length="8" />
+        <property name="toTime" type="time">
+            <column name="to_time" length="8" />
         </property>
         <set name="areas" table="delivery_areas" inverse="false" lazy="true" fetch="select">
             <key>

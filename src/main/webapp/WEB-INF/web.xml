@@ -20,6 +20,14 @@
         <servlet-name>ShopServlet</servlet-name>
         <servlet-class>com.shop.servlet.ShopServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserDetailsServlet</servlet-name>
+        <servlet-class>com.shop.servlet.UserDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.shop.servlet.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProvinceServlet</servlet-name>
         <url-pattern>/ProvinceServlet</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>ShopServlet</servlet-name>
         <url-pattern>/ShopServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserDetailsServlet</servlet-name>
+        <url-pattern>/UserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -513,7 +513,7 @@ input {
 
 .rs-select2 .select2-container {
   width: 100% !important;
-  outline: none;
+  
   background: #fafafa;
   -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
@@ -524,7 +524,7 @@ input {
 }
 
 .rs-select2 .select2-container .select2-selection--single {
-  outline: none;
+  
   border: none;
   height: 50px;
   background: transparent;
@@ -640,3 +640,8 @@ input {
     padding: 50px 40px;
   }
 }
+
+input:focus , select:focus {
+  outline: 2px solid black;
+}
+

@@ -1,5 +1,5 @@
 package com.shop.domain;
-// Generated Mar 30, 2020 7:29:02 PM by Hibernate Tools 4.3.1
+// Generated Mar 31, 2020 7:37:15 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

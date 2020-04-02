@@ -11,6 +11,8 @@ const Toast = Swal.mixin({
   timer: 3000
 });
 
+var action = '';
+
  //get provinces
 $.ajax({
         url		: './ProvinceServlet',
@@ -88,7 +90,7 @@ $("#add").click(function(){
 function sendData(){
         if(validate() != '1'){
                 $.ajax({
-                    url		: './CityServlet?action='+action,
+                    url		: './ShopServlet?action='+action,
                     type	: 'POST',
                     dataType	: 'json',
                     data	: $('form').serialize(),
@@ -97,10 +99,47 @@ function sendData(){
                                 type: 'success',
                                 title: data.success
                             });
-                            dataLoad();
+                            //dataLoad();
                             $("#reset").click();
+                            reset();
                     }
                 });
 	}
 	
+}
+
+function reset(){
+    //$("#reset").click();
+    $('#cmbCategory').prop('selectedIndex',0);
+    $('#cmbProvince').prop('selectedIndex',0);
+    $('#cmbDistrict').prop('selectedIndex',0);
+    $('#ambArea').prop('selectedIndex',0);
+}
+
+$("#reset").click(function(){
+    document.getElementById("cmbCategory").selectedIndex = 0;
+    $('#cmbCategory').prop('selectedIndex',0);
+    $('#cmbProvince').prop('selectedIndex',0);
+    $('#cmbDistrict').prop('selectedIndex',0);
+    $('#ambArea').prop('selectedIndex',0);
+});
+
+//validations
+function validate(){
+    var err = 0;
+
+    var elem = document.getElementById('shopForm').elements;
+    for(var i = 0; i < elem.length; i++){
+    	if(elem[i].type != "button" && elem[i].type != "reset" && elem[i].id != "txtId" && elem[i].id != "txtOtherName" && elem[i].id != "txtCon2" && elem[i].id != "txtWhatsapp" && elem[i].id != "txtWeb" && elem[i].id != "txtFb" && elem[i].id != "txtEmail"){
+            if(elem[i].value == '' || elem[i].value == '0'){
+                Toast.fire({
+                    type: 'warning',
+                    title: 'This field is required'
+                    });
+                    $("#"+elem[i].id).focus();
+                err = 1;
+                return err;
+            }
+    	}
+    }
 }

@@ -2,16 +2,16 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="shop_search"/>
-  <table-filter match-name="user_details"/>
-  <table-filter match-name="user_level"/>
   <table-filter match-name="package_n"/>
-  <table-filter match-name="item"/>
-  <table-filter match-name="area"/>
-  <table-filter match-name="district"/>
-  <table-filter match-name="package_has_item"/>
-  <table-filter match-name="delivery_areas"/>
   <table-filter match-name="shop_has_package"/>
-  <table-filter match-name="province"/>
-  <table-filter match-name="category"/>
+  <table-filter match-name="delivery_areas"/>
+  <table-filter match-name="package_has_item"/>
+  <table-filter match-name="area"/>
+  <table-filter match-name="item"/>
   <table-filter match-name="shop"/>
+  <table-filter match-name="province"/>
+  <table-filter match-name="user_level"/>
+  <table-filter match-name="user_details"/>
+  <table-filter match-name="category"/>
+  <table-filter match-name="district"/>
 </hibernate-reverse-engineering>

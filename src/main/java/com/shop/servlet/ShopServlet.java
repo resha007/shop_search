@@ -6,14 +6,20 @@
 package com.shop.servlet;
 
 import com.shop.domain.Shop;
+import com.shop.enums.MessageEnum;
 import com.shop.service.AreaService;
 import com.shop.service.CategoryService;
+import com.shop.service.ShopService;
+import com.shop.service.UserDetailsService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 /**
  *
@@ -74,15 +80,18 @@ public class ShopServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //action of data
-        String action = request.getParameter("action");
+        String action = "add";
         
         int status = 1;
         
-        if(request.getParameter("cmbStatus").equals("Active")){
-            status = 1;
-        }else{
-            status = 2;
-        }
+//        if(request.getParameter("cmbStatus").equals("Active")){
+//            status = 1;
+//        }else{
+//            status = 2;
+//        }
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
         
         Shop shop = new Shop();
         
@@ -93,7 +102,8 @@ public class ShopServlet extends HttpServlet {
         shop.setArea(AreaService.getAreaById(Integer.parseInt(request.getParameter("cmbArea"))));
         shop.setAddress(request.getParameter("txtAddress"));
         //shop.setIs24Hours(request.getParameter("chk24"));
-        
+        shop.setFromTime(date);
+        shop.setToTime(date);
         shop.setContactNo1(request.getParameter("txtCon1"));
         shop.setContactNo2(request.getParameter("txtCon2"));
         shop.setWhatsappViber(request.getParameter("txtWhatsapp"));
@@ -103,7 +113,33 @@ public class ShopServlet extends HttpServlet {
         shop.setDeliveryKm(Double.parseDouble(request.getParameter("txtDelArea")));
         shop.setWebsite(request.getParameter("txtWeb"));
         shop.setFbLink(request.getParameter("txtFb"));
+        shop.setUserDetails(UserDetailsService.getUserDetailsById(Integer.parseInt("1")));
         
+        
+        if(action.trim().equals("add")){System.out.println("##4");
+            try{
+                    shop.setCreatedDate(date);
+                    
+                    shop = ShopService.saveShop(shop);
+
+                    JSONObject res = new JSONObject();
+                    
+                    res.put("success", MessageEnum.CREATE_SUCCESS_MESSAGE.getDescription());
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.setContentType("application/json");
+                    response.setStatus(200);
+                    response.getWriter().write(res.toString());
+                    response.getWriter().close();
+            }catch(Exception e){
+                    JSONObject res = new JSONObject();
+                    res.put("success", MessageEnum.CREATE_FAILED_MESSAGE.getDescription());
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.setContentType("application/json");
+                    response.setStatus(200);
+                    response.getWriter().write(res.toString());
+                    response.getWriter().close();
+            }
+        }
         
     }
 

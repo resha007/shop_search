@@ -1,5 +1,5 @@
 package com.shop.domain;
-// Generated Mar 30, 2020 7:29:02 PM by Hibernate Tools 4.3.1
+// Generated Mar 31, 2020 7:37:15 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,8 +32,8 @@ public class Shop  implements java.io.Serializable {
      private String name;
      private String otherName;
      private Date createdDate;
-     private Date from;
-     private Date to;
+     private Date fromTime;
+     private Date toTime;
      private Set<Area> areas = new HashSet<Area>(0);
      private Set<PackageN> packageNs = new HashSet<PackageN>(0);
 
@@ -46,7 +46,7 @@ public class Shop  implements java.io.Serializable {
         this.category = category;
         this.userDetails = userDetails;
     }
-    public Shop(Area area, Category category, UserDetails userDetails, String brNo, Character is24Hours, Integer deliveryTimeMin, Integer deliveryTimeMax, String contactNo1, String contactNo2, String whatsappViber, String email, String address, String status, Double deliveryKm, String website, String fbLink, String name, String otherName, Date createdDate, Date from, Date to, Set<Area> areas, Set<PackageN> packageNs) {
+    public Shop(Area area, Category category, UserDetails userDetails, String brNo, Character is24Hours, Integer deliveryTimeMin, Integer deliveryTimeMax, String contactNo1, String contactNo2, String whatsappViber, String email, String address, String status, Double deliveryKm, String website, String fbLink, String name, String otherName, Date createdDate, Date fromTime, Date toTime, Set<Area> areas, Set<PackageN> packageNs) {
        this.area = area;
        this.category = category;
        this.userDetails = userDetails;
@@ -66,8 +66,8 @@ public class Shop  implements java.io.Serializable {
        this.name = name;
        this.otherName = otherName;
        this.createdDate = createdDate;
-       this.from = from;
-       this.to = to;
+       this.fromTime = fromTime;
+       this.toTime = toTime;
        this.areas = areas;
        this.packageNs = packageNs;
     }
@@ -212,19 +212,19 @@ public class Shop  implements java.io.Serializable {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-    public Date getFrom() {
-        return this.from;
+    public Date getFromTime() {
+        return this.fromTime;
     }
     
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setFromTime(Date fromTime) {
+        this.fromTime = fromTime;
     }
-    public Date getTo() {
-        return this.to;
+    public Date getToTime() {
+        return this.toTime;
     }
     
-    public void setTo(Date to) {
-        this.to = to;
+    public void setToTime(Date toTime) {
+        this.toTime = toTime;
     }
     public Set<Area> getAreas() {
         return this.areas;

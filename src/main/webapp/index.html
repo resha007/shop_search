@@ -32,11 +32,12 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Shop Registration Form</h2>
-                    <form method="POST">
+                    <h6>(* required)</h6><br>
+                    <form method="POST" id="shopForm">
                         <div class="input-group">
                             <div class="">
                                 <div class="input-group">
-                                    <label class="label">Shop Name*</label>
+                                    <label class="label">Shop Name <span style="text-transform: lowercase">(as on</span> BR)*</label>
                                     <input class="input--style-4" type="text" name="txtShopName" id="txtShopName" placeholder="Example Shop">
                                 </div>
                             </div>
@@ -60,7 +61,7 @@
                             </div>
                             <div class="col-2">
                                 <label class="label">Category*</label>
-                                <div class="rs-select2 js-select-simple select--no-search">
+                                <div class="rs-select2 js-select-simple">
                                     <select name="cmbCategory" id="cmbCategory">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                     </select>
@@ -71,7 +72,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <label class="label">Province*</label>
-                                <div class="rs-select2 js-select-simple select--no-search">
+                                <div class="rs-select2 js-select-simple">
                                     <select name="cmbProvince" id="cmbProvince">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                         
@@ -81,7 +82,7 @@
                             </div>
                             <div class="col-2">
                                 <label class="label">District*</label>
-                                <div class="rs-select2 js-select-simple select--no-search">
+                                <div class="rs-select2 js-select-simple">
                                     <select name="cmbDistrict" id="cmbDistrict">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                         
@@ -93,7 +94,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <label class="label">Area*</label>
-                                <div class="rs-select2 js-select-simple select--no-search">
+                                <div class="rs-select2 js-select-simple">
                                     <select name="cmbArea" id="cmbArea">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                         
@@ -122,13 +123,13 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Opening Hours(From)</label>
-                                    <input class="input--style-4" type="time" name="txtOpening" id="txtOpening" placeholder="">
+                                    <input class="input--style-4" type="time" name="txtFrom" id="txtFrom" placeholder="">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Opening Hours(To)</label>
-                                    <input class="input--style-4" type="time" name="txtOpening" id="txtOpening" placeholder="">
+                                    <input class="input--style-4" type="time" name="txtTo" id="txtTo" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -258,6 +259,7 @@
                         </div>-->
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="button" id="add" name="add">Register</button>
+                            <button class="btn btn--radius-2 btn--blue" type="reset" id="reset" name="reset">Reset</button>
                         </div>
                     </form>
                 </div>
