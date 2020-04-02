@@ -22,14 +22,14 @@ $("#btnLogin").click(function(){
 			type        : 'POST',
 			dataType    : 'json',
 			data        : $('form').serialize(),
-			success     :function(data){alert(data);
+			success     :function(data){//alert(data);
 				if(data){
 					user = data;
 					Toast.fire({
 						type: 'success',
 						title: 'Login Success!'
 					});
-					window.location.href = "../shop.html";
+					window.location.href = "../index.jsp";
 				}else{
 					Toast.fire({
 						type: 'error',

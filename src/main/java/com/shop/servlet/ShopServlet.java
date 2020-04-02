@@ -102,8 +102,18 @@ public class ShopServlet extends HttpServlet {
         shop.setArea(AreaService.getAreaById(Integer.parseInt(request.getParameter("cmbArea"))));
         shop.setAddress(request.getParameter("txtAddress"));
         //shop.setIs24Hours(request.getParameter("chk24"));
-        shop.setFromTime(date);
-        shop.setToTime(date);
+        
+        try{System.out.println("####################from to11111 : "+request.getParameter("txtFrom")+" "+request.getParameter("txtTo"));
+            Date from = new SimpleDateFormat("HH:mm:ss").parse(request.getParameter("txtFrom"));  
+            Date to = new SimpleDateFormat("HH:mm:ss").parse(request.getParameter("txtTo"));  
+            System.out.println("####################from to22222 : "+request.getParameter("txtFrom")+" "+request.getParameter("txtTo"));
+            shop.setFromTime(from);
+            shop.setToTime(to);
+        }catch(Exception e){
+                    System.out.println("############date error : "+e.getMessage()+e.getCause());
+        }
+        System.out.println("#################from to123 : "+shop.getFromTime()+" "+shop.getToTime());
+        
         shop.setContactNo1(request.getParameter("txtCon1"));
         shop.setContactNo2(request.getParameter("txtCon2"));
         shop.setWhatsappViber(request.getParameter("txtWhatsapp"));
@@ -113,7 +123,7 @@ public class ShopServlet extends HttpServlet {
         shop.setDeliveryKm(Double.parseDouble(request.getParameter("txtDelArea")));
         shop.setWebsite(request.getParameter("txtWeb"));
         shop.setFbLink(request.getParameter("txtFb"));
-        shop.setUserDetails(UserDetailsService.getUserDetailsById(Integer.parseInt("1")));
+        shop.setUserDetails(UserDetailsService.getUserDetailsById(Integer.parseInt(request.getParameter("txtUser"))));
         
         
         if(action.trim().equals("add")){System.out.println("##4");
