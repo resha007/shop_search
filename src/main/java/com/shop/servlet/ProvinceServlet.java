@@ -61,8 +61,9 @@ public class ProvinceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String type = request.getParameter("type");
+        
         List<Province> list = null;
-System.out.println("##innnnnnnnnnnnnnnnnnnnnnn"+type);
+
         if(type.trim().equals("tbl")){
             //get data to the table
             list = ProvinceService.getAllProvinces();

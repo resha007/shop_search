@@ -6,7 +6,7 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shop_search?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-<!--        <property name="hibernate.connection.password">C0R0NA@$#shop%R&V</property>-->
+    <!--        <property name="hibernate.connection.password">C0R0NA@$#shop%R&V</property>-->
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.connection.pool_size">1</property>
     <mapping resource="com/shop/domain/Area.hbm.xml"/>

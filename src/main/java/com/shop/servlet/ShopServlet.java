@@ -5,20 +5,28 @@
  */
 package com.shop.servlet;
 
+import com.shop.domain.Area;
+import com.shop.domain.Category;
+import com.shop.domain.District;
+import com.shop.domain.Province;
 import com.shop.domain.Shop;
 import com.shop.enums.MessageEnum;
 import com.shop.service.AreaService;
 import com.shop.service.CategoryService;
+import com.shop.service.DistrictService;
+import com.shop.service.ProvinceService;
 import com.shop.service.ShopService;
 import com.shop.service.UserDetailsService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -65,7 +73,34 @@ public class ShopServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String type = request.getParameter("type");
+        
+        List<Shop> list = null;
+
+        if(type.trim().equals("search")){
+            //get data to the table
+            String proId = request.getParameter("province");
+            String disId = request.getParameter("district");
+            String areaId = request.getParameter("area");
+            String catId = request.getParameter("category");
+            
+            Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
+            District dis = DistrictService.getDistrictById(Integer.parseInt(disId));
+            Area area = AreaService.getAreaById(Integer.parseInt(areaId));
+            Category cat = CategoryService.getCategoryById(Integer.parseInt(catId));
+            
+            list = ShopService.searchShops(pro, dis, area, cat);
+        }
+        
+        request.setAttribute("list", list);
+        JSONArray jsonString = new JSONArray(list);
+
+        //Response	
+        response.setCharacterEncoding("UTF-8"); 
+        response.setContentType("application/json");
+        response.getWriter().print(jsonString); 
+        response.getWriter().close();
+        System.out.println("##JsonArraysearch"+jsonString);
     }
 
     /**
@@ -124,7 +159,7 @@ public class ShopServlet extends HttpServlet {
         shop.setWebsite(request.getParameter("txtWeb"));
         shop.setFbLink(request.getParameter("txtFb"));
         shop.setUserDetails(UserDetailsService.getUserDetailsById(Integer.parseInt(request.getParameter("txtUser"))));
-        
+        shop.setStatus("1");
         
         if(action.trim().equals("add")){System.out.println("##4");
             try{

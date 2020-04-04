@@ -2,8 +2,11 @@ package com.shop.dao;
 
 
 
+import com.shop.domain.Area;
+import com.shop.domain.Category;
 import com.shop.domain.Shop;
 import com.shop.domain.District;
+import com.shop.domain.Province;
 import com.shop.enums.RecordStatusEnum;
 import com.shop.util.SessionUtill;
 import org.hibernate.Criteria;
@@ -122,6 +125,29 @@ public class ShopDAO {
         
         //get cities of a district
 	public static List<Shop> getCitiesofDistrict(District district){
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+			criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("district", district)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get districts of province:" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //get Shop by id
+	public static List<Shop> searchShops(Province province,District district,Area area,Category category){
 		List<Shop> dataList = null;
 		try {
 			SessionUtill sessionUtill = new SessionUtill();

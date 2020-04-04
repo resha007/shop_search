@@ -71,31 +71,31 @@ function validate(){
 $('#txtPassword').on('keypress', function (e) {
          if(e.which === 13){
             if(validate() == 0){
-            $.ajax({
-                            url         : './LoginServlet?action='+'auth',
-                            type        : 'POST',
-                            dataType    : 'json',
-                            data        : $('form').serialize(),
-                            success     :function(data){//alert(data);
-                                    if(data){
-                                            user = data;
-                                            Toast.fire({
-                                                    type: 'success',
-                                                    title: 'Login Success!'
-                                            });
-                                            window.location.href = "index.jsp";
-                                    }else{
-                                            Toast.fire({
-                                                    type: 'error',
-                                                    title: 'Username or Password is incorrect. Please try again.'
-                                            });
-                                            //$("#txtUsername").val("");
-                                            $("#txtPassword").val("");
-                                            $("#txtUsername").focus();
-                                    }
-                            }
-                    });
-        }
+                $.ajax({
+                                url         : '../LoginServlet?action='+'auth',
+                                type        : 'POST',
+                                dataType    : 'json',
+                                data        : $('form').serialize(),
+                                success     :function(data){//alert(data);
+                                        if(data){
+                                                user = data;
+                                                Toast.fire({
+                                                        type: 'success',
+                                                        title: 'Login Success!'
+                                                });
+                                                window.location.href = "../index.jsp";
+                                        }else{
+                                                Toast.fire({
+                                                        type: 'error',
+                                                        title: 'Username or Password is incorrect. Please try again.'
+                                                });
+                                                //$("#txtUsername").val("");
+                                                $("#txtPassword").val("");
+                                                $("#txtUsername").focus();
+                                        }
+                                }
+                        });
+            }
          }
    });
 

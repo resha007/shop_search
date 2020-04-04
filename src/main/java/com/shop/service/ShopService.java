@@ -2,9 +2,11 @@ package com.shop.service;
 
 
 import com.shop.dao.ShopDAO;
-import com.shop.dao.DistrictDAO;
+import com.shop.domain.Area;
+import com.shop.domain.Category;
 import com.shop.domain.Shop;
 import com.shop.domain.District;
+import com.shop.domain.Province;
 import com.shop.enums.RecordStatusEnum;
 import java.util.List;
 
@@ -57,5 +59,10 @@ public class ShopService {
         //get cities of district
 	public static List<Shop> getCitiesofDistrict(District district){
 		return ShopDAO.getCitiesofDistrict(district);
+	}
+        
+        //get cities of district
+	public static List<Shop> searchShops(Province province,District district,Area area,Category category){
+		return ShopDAO.searchShops(province,district,area,category);
 	}
 }

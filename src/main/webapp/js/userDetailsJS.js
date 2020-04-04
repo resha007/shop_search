@@ -79,7 +79,7 @@ function sendData(){
                                 type: 'success',
                                 title: data.success
                             });
-                            dataLoad();
+                            //dataLoad();
                             $("#reset").click();
                     }
                 });

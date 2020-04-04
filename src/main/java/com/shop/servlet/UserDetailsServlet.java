@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -138,16 +139,16 @@ public class UserDetailsServlet extends HttpServlet {
                     
                     //password
                     String password = request.getParameter("txtPassword");
-                    System.out.println("###############servlet3333");
+                    
                     try {System.out.println("###############servlet333311111");
                             obj.setPassword(AeSimpleSHA1.SHA1(password));System.out.println("###############servlet33332222222");
                     } catch (NoSuchAlgorithmException e1) {
                             // TODO Auto-generated catch block
                             e1.printStackTrace();
                     }
-                    System.out.println("###############servlet4");
+                    
                     obj = UserDetailsService.saveUserDetails(obj);
-System.out.println("###############servlet5");
+
                     //notify with an email to the user
                     //email content
 //                    String to = obj.getEmail();
@@ -158,6 +159,34 @@ System.out.println("###############servlet5");
 //                    //sending email
 //                    SendMail.sendGMail(to, subject, msg);
                     
+//                    UserDetails user = new UserDetails();
+//                    List<UserDetails> userList = null;
+//                    boolean status = false;
+//                    
+//                    
+//                    user.setUsername(request.getParameter("txtUsername"));
+//                    user.setPassword(password);
+//
+//                    user = UserDetailsService.authentication(user);
+//                    
+//                    //JSONArray jsonString = new JSONArray(userList);
+//
+//                    //Response	
+//                    response.setCharacterEncoding("UTF-8"); 
+//                    response.setContentType("application/json");
+//                    if(!(user == null)){
+//                        request.getSession();
+//                        HttpSession session = request.getSession();
+//                        session.setAttribute("user", user);
+//                        status = true;
+//                        response.getWriter().print(status);System.out.println("######### jsp : "+status);
+//                        response.sendRedirect("index.jsp");System.out.println("######### jsp redirected : ");
+//                    }else{
+//                        status = false;
+//                        response.getWriter().print(status); 
+//                    } 
+                    
+                    
                     JSONObject res = new JSONObject();
                     
                     res.put("success", MessageEnum.CREATE_SUCCESS_MESSAGE.getDescription());
@@ -165,7 +194,8 @@ System.out.println("###############servlet5");
                     response.setContentType("application/json");
                     response.setStatus(200);
                     response.getWriter().write(res.toString());
-                    response.getWriter().close();
+                    response.getWriter().close();System.out.println("######### jsp redirected1111 : ");
+                    response.sendRedirect("./index1.html");  System.out.println("######### jsp redirected2222 : ");
             }catch(Exception e){
                     JSONObject res = new JSONObject();
                     res.put("success", MessageEnum.CREATE_FAILED_MESSAGE.getDescription());
