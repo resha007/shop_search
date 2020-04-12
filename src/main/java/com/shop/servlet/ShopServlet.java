@@ -11,6 +11,7 @@ import com.shop.domain.District;
 import com.shop.domain.Province;
 import com.shop.domain.Shop;
 import com.shop.enums.MessageEnum;
+import com.shop.enums.RecordStatusEnum;
 import com.shop.service.AreaService;
 import com.shop.service.CategoryService;
 import com.shop.service.DistrictService;
@@ -77,6 +78,18 @@ public class ShopServlet extends HttpServlet {
         
         List<Shop> list = null;
 
+        if(type.trim().equals("tbl")){
+            //get data to the table
+            list = ShopService.getAllShops();
+        }else if(type.trim().equals("cmb")){
+            //get active list to load combo box
+            list = ShopService.getActiveShops();
+        }else if(type.trim().equals("byId")){
+            //get active list to load combo box
+            String id = request.getParameter("id");
+            list = ShopService.getShopByIdList(Integer.parseInt(id));
+        }
+        
         if(type.trim().equals("search")){
             //get data to the table
             String proId = request.getParameter("province");
@@ -84,12 +97,42 @@ public class ShopServlet extends HttpServlet {
             String areaId = request.getParameter("area");
             String catId = request.getParameter("category");
             
-            Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
-            District dis = DistrictService.getDistrictById(Integer.parseInt(disId));
-            Area area = AreaService.getAreaById(Integer.parseInt(areaId));
-            Category cat = CategoryService.getCategoryById(Integer.parseInt(catId));
+            if(proId.equals("0") && disId.equals("0") && areaId.equals("0") && catId.equals("0")){System.out.println("########## alll");
+                list = ShopService.getAllShops();
+            }
+            else if(disId.equals("0") && areaId.equals("0") && catId.equals("0")){
+                Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
+                list = ShopService.searchShops(pro);
+            }
+            else if(areaId.equals("0") && catId.equals("0")){
+                Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
+                District dis = DistrictService.getDistrictById(Integer.parseInt(disId));
+                list = ShopService.searchShops(pro, dis);
+            }
+            else if(catId.equals("0")){
+                Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
+                District dis = DistrictService.getDistrictById(Integer.parseInt(disId));
+                Area area = AreaService.getAreaById(Integer.parseInt(areaId));
+                list = ShopService.searchShops(pro, dis, area);
+            }
+            else if(proId.equals("0") && disId.equals("0") && areaId.equals("0")){
+                Category cat = CategoryService.getCategoryById(Integer.parseInt(catId));
+                list = ShopService.searchShops(cat);
+            }
+            else{
+                Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
+                District dis = DistrictService.getDistrictById(Integer.parseInt(disId));
+                Area area = AreaService.getAreaById(Integer.parseInt(areaId));
+                Category cat = CategoryService.getCategoryById(Integer.parseInt(catId));
+                list = ShopService.searchShops(pro, dis, area, cat);
+            }
             
-            list = ShopService.searchShops(pro, dis, area, cat);
+//            Province pro = ProvinceService.getProvinceById(Integer.parseInt(proId));
+//            District dis = DistrictService.getDistrictById(Integer.parseInt(disId));
+//            Area area = AreaService.getAreaById(Integer.parseInt(areaId));
+//            Category cat = CategoryService.getCategoryById(Integer.parseInt(catId));
+//            
+//            list = ShopService.searchShops(pro, dis, area, cat);
         }
         
         request.setAttribute("list", list);
@@ -115,7 +158,7 @@ public class ShopServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //action of data
-        String action = "add";
+        String action = request.getParameter("action");
         
         int status = 1;
         
@@ -132,22 +175,22 @@ public class ShopServlet extends HttpServlet {
         
         shop.setName(request.getParameter("txtShopName"));
         shop.setOtherName(request.getParameter("txtOtherName"));
-        shop.setBrNo(request.getParameter("txtBR"));
+        shop.setBrNo(request.getParameter("txtBR").toUpperCase());
         shop.setCategory(CategoryService.getCategoryById(Integer.parseInt(request.getParameter("cmbCategory"))));
         shop.setArea(AreaService.getAreaById(Integer.parseInt(request.getParameter("cmbArea"))));
         shop.setAddress(request.getParameter("txtAddress"));
         //shop.setIs24Hours(request.getParameter("chk24"));
         
-        try{System.out.println("####################from to11111 : "+request.getParameter("txtFrom")+" "+request.getParameter("txtTo"));
-            Date from = new SimpleDateFormat("HH:mm:ss").parse(request.getParameter("txtFrom"));  
-            Date to = new SimpleDateFormat("HH:mm:ss").parse(request.getParameter("txtTo"));  
-            System.out.println("####################from to22222 : "+request.getParameter("txtFrom")+" "+request.getParameter("txtTo"));
-            shop.setFromTime(from);
-            shop.setToTime(to);
-        }catch(Exception e){
-                    System.out.println("############date error : "+e.getMessage()+e.getCause());
-        }
-        System.out.println("#################from to123 : "+shop.getFromTime()+" "+shop.getToTime());
+//        try{System.out.println("####################from to11111 : "+request.getParameter("txtFrom")+" "+request.getParameter("txtTo"));
+//            Date from = new SimpleDateFormat("HH:mm:ss").parse(request.getParameter("txtFrom"));  
+//            Date to = new SimpleDateFormat("HH:mm:ss").parse(request.getParameter("txtTo"));  
+//            System.out.println("####################from to22222 : "+request.getParameter("txtFrom")+" "+request.getParameter("txtTo"));
+//            shop.setFromTime(from);
+//            shop.setToTime(to);
+//        }catch(Exception e){
+//                    System.out.println("############date error : "+e.getMessage()+e.getCause());
+//        }
+//        System.out.println("#################from to123 : "+shop.getFromTime()+" "+shop.getToTime());
         
         shop.setContactNo1(request.getParameter("txtCon1"));
         shop.setContactNo2(request.getParameter("txtCon2"));
@@ -159,11 +202,12 @@ public class ShopServlet extends HttpServlet {
         shop.setWebsite(request.getParameter("txtWeb"));
         shop.setFbLink(request.getParameter("txtFb"));
         shop.setUserDetails(UserDetailsService.getUserDetailsById(Integer.parseInt(request.getParameter("txtUser"))));
-        shop.setStatus("1");
+        
         
         if(action.trim().equals("add")){System.out.println("##4");
             try{
                     shop.setCreatedDate(date);
+                    shop.setStatus(RecordStatusEnum.INACTIVE.getId());
                     
                     shop = ShopService.saveShop(shop);
 
@@ -178,6 +222,62 @@ public class ShopServlet extends HttpServlet {
             }catch(Exception e){
                     JSONObject res = new JSONObject();
                     res.put("success", MessageEnum.CREATE_FAILED_MESSAGE.getDescription());
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.setContentType("application/json");
+                    response.setStatus(200);
+                    response.getWriter().write(res.toString());
+                    response.getWriter().close();
+            }
+        }else if(action.trim().equals("update")){
+            try{
+                    shop.setId(Integer.parseInt(request.getParameter("txtId")));
+                    
+                    //shop.setStatus(RecordStatusEnum.INACTIVE.getId());
+                    
+                    if(request.getParameter("cmbStatus").equals("1")){
+                        shop.setStatus(RecordStatusEnum.ACTIVE.getId());
+                    }else if(request.getParameter("cmbStatus").equals("2")){
+                        shop.setStatus(RecordStatusEnum.INACTIVE.getId());
+                    }
+                    
+                    //shop.setModifiedDate(date);
+                    shop = ShopService.updateShop(shop);
+
+                    JSONObject res = new JSONObject();
+                    
+                    res.put("success", MessageEnum.UPDATE_SUCCESS_MESSAGE.getDescription());
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.setContentType("application/json");
+                    response.setStatus(200);
+                    response.getWriter().write(res.toString());
+                    response.getWriter().close();
+            }catch(Exception e){
+                    JSONObject res = new JSONObject();
+                    res.put("success", MessageEnum.UPDATE_FAILED_MESSAGE.getDescription());
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.setContentType("application/json");
+                    response.setStatus(200);
+                    response.getWriter().write(res.toString());
+                    response.getWriter().close();
+            }
+        }else if(action.trim().equals("delete")){System.out.println("##6");
+            try{
+                    shop.setId(Integer.parseInt(request.getParameter("txtId")));
+                    //obj.setModifiedDate(date);
+                    
+                    shop = ShopService.deleteShop(shop);
+
+                    JSONObject res = new JSONObject();
+                    
+                    res.put("success", MessageEnum.DELETE_SUCCESS_MESSAGE.getDescription());
+                    response.setCharacterEncoding("UTF-8"); 
+                    response.setContentType("application/json");
+                    response.setStatus(200);
+                    response.getWriter().write(res.toString());
+                    response.getWriter().close();
+            }catch(Exception e){
+                    JSONObject res = new JSONObject();
+                    res.put("success", MessageEnum.DELETE_FAILED_MESSAGE.getDescription());
                     response.setCharacterEncoding("UTF-8"); 
                     response.setContentType("application/json");
                     response.setStatus(200);

@@ -33,37 +33,37 @@
 	
 	<!-- Header -->
 
-<!--	<header class="header">
+	<header class="header">
 
-		 Top Bar 
+<!--		 Top Bar -->
 
 		<div class="top_bar">
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="phone">+45 345 3324 56789</div>
+                                            <div class="phone"><a href="/search/" style="color:white">Shop Search</a></div>
 						<div class="social">
 							<ul class="social_list">
-								<li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+<!--								<li class="social_list_item"><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>-->
 								<li class="social_list_item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+<!--								<li class="social_list_item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 								<li class="social_list_item"><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
 								<li class="social_list_item"><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-								<li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								<li class="social_list_item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>-->
 							</ul>
 						</div>
 						<div class="user_box ml-auto">
-							<div class="user_box_login user_box_link"><a href="#">login</a></div>
-							<div class="user_box_register user_box_link"><a href="#">register</a></div>
+							<div class="user_box_login user_box_link"><a href="/shop_search/login/">login</a></div>
+							<div class="user_box_register user_box_link"><a href="/shop_search/user.html">register</a></div>
 						</div>
 					</div>
 				</div>
 			</div>		
 		</div>
 
-		 Main Navigation 
+<!--		 Main Navigation -->
 
-		<nav class="main_nav">
+<!--		<nav class="main_nav">
 			<div class="container">
 				<div class="row">
 					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
@@ -113,11 +113,11 @@
 					</div>
 				</div>
 			</div>	
-		</nav>
+		</nav>-->
 
-	</header>-->
+	</header>
 
-	<div class="menu trans_500">
+<!--	<div class="menu trans_500">
 		<div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
 			<div class="menu_close_container"><div class="menu_close"></div></div>
 			<div class="logo menu_logo"><a href="#"><img src="images/logo.png" alt=""></a></div>
@@ -129,7 +129,7 @@
 				<li class="menu_item"><a href="contact.html">contact</a></li>
 			</ul>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Home -->
 
@@ -260,12 +260,12 @@
 					<!-- Search Panel -->
 
 					<div class="search_panel active">
-						<form action="#" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+						<form id="searchForm" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
 
 							<div class="search_item col-md-2">
 								<div>1. Province</div>
 								<select name="cmbProvince" id="cmbProvince" class="dropdown_item_select search_input">
-                                                                    <option value="0" selected="">All</option>
+                                                                    <option value="0" selected="">Loading...</option>
 								</select>
 							</div>
                                                         <div class="search_item col-md-2">
@@ -282,68 +282,48 @@
 							</div>
                                                         <div class="search_item col-md-2">
 								<div>4. Category</div>
-								<select name="cmbCategory" id="cmbCategory" class="dropdown_item_select search_input">
-                                                                    <option value="0" selected="">All</option>
+								<select name="cmbCategory" id="cmbCategory" class="dropdown_item_select search_input" >
+                                                                    <option value="0" selected="">Loading...</option>
 								</select>
-							</div>
-                                                    <button class="button search_button" id="btnSearch" name="btnSearch">search<span></span><span></span><span></span></button>
-						</form>
+                                                        </div>
+                                                        
+                                                            <button type="button" class="button search_button_new" id="btnSearch" name="btnSearch">search<span></span><span></span><span></span></button>
+                                                        
+                                                </form>
+                                             
 					</div>
 
 					<!-- Search Panel -->
 
 					
 				</div>
-			</div>
+			</div><div style="text-align: center">
+            <a href="../login/" class="button search_button_new" >Register Your Shop</a>
+        </div>
 		</div>		
 	</div>
 
 	<!-- Intro -->
+        
 	
 	<div class="intro">
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<h2 class="intro_title text-center">We have the best tours</h2>
+					<h3 class="intro_title text-center">Shop Search Results</h3>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<div class="intro_text text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu convallis tortor. Suspendisse potenti. In faucibus massa arcu, vitae cursus mi hendrerit nec. </p>
+						<p> </p>
 					</div>
 				</div>
 			</div>
-			<div class="row intro_items">
+			<div class="row intro_items" id="shopList">
 
 				<!-- Intro Item -->
-                                <% 
-                                   List<Shop> shopList =  ShopService.getActiveShops();
-                                %>
-                                <% for(int i = 0; i < shopList.size(); i+=1) { %>
-                                    <div class="col-lg-4 intro_col">
-					<div class="intro_item">
-                                                    <div class="intro_item_overlay"></div>
-                                                    <!-- Image by https://unsplash.com/@dnevozhai -->
-                                                    <div class="intro_item_background" style="background-image:url(images/intro_1.jpg)"></div>
-                                                    <div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
-                                                            <div class="intro_date">May 25th - June 01st</div>
-                                                            <div class="button intro_button"><div class="button_bcg"></div><a href="#">see more<span></span><span></span><span></span></a></div>
-                                                            <div class="intro_center text-center">
-                                                                    <h1><%= shopList.get(i).getName() %></h1>
-                                                                    <div class="intro_price">From $1450</div>
-                                                                    <div class="rating rating_4">
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                    </div>
-                                                            </div>
-                                                    </div>
-                                            </div>
-                                    </div>
-                                <% } %>
+                                
                                 
 <!--				<div class="col-lg-4 intro_col">
 					<div class="intro_item">
@@ -969,7 +949,7 @@
 		</div>
 	</div>-->
 
-	<div class="contact">
+<!--	<div class="contact">
 		<div class="contact_background" style="background-image:url(images/contact.png)"></div>
 
 		<div class="container">
@@ -993,15 +973,15 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Footer -->
 
-	<footer class="footer">
+<!--	<footer class="footer">
 		<div class="container">
 			<div class="row">
 
-				<!-- Footer Column -->
+				 Footer Column 
 				<div class="col-lg-3 footer_column">
 					<div class="footer_col">
 						<div class="footer_content footer_about">
@@ -1020,13 +1000,13 @@
 					</div>
 				</div>
 
-				<!-- Footer Column -->
+				 Footer Column 
 				<div class="col-lg-3 footer_column">
 					<div class="footer_col">
 						<div class="footer_title">blog posts</div>
 						<div class="footer_content footer_blog">
 							
-							<!-- Footer blog item -->
+							 Footer blog item 
 							<div class="footer_blog_item clearfix">
 								<div class="footer_blog_image"><img src="images/footer_blog_1.jpg" alt="https://unsplash.com/@avidenov"></div>
 								<div class="footer_blog_content">
@@ -1035,7 +1015,7 @@
 								</div>
 							</div>
 							
-							<!-- Footer blog item -->
+							 Footer blog item 
 							<div class="footer_blog_item clearfix">
 								<div class="footer_blog_image"><img src="images/footer_blog_2.jpg" alt="https://unsplash.com/@deannaritchie"></div>
 								<div class="footer_blog_content">
@@ -1044,7 +1024,7 @@
 								</div>
 							</div>
 
-							<!-- Footer blog item -->
+							 Footer blog item 
 							<div class="footer_blog_item clearfix">
 								<div class="footer_blog_image"><img src="images/footer_blog_3.jpg" alt="https://unsplash.com/@bergeryap87"></div>
 								<div class="footer_blog_content">
@@ -1057,7 +1037,7 @@
 					</div>
 				</div>
 
-				<!-- Footer Column -->
+				 Footer Column 
 				<div class="col-lg-3 footer_column">
 					<div class="footer_col">
 						<div class="footer_title">tags</div>
@@ -1076,7 +1056,7 @@
 					</div>
 				</div>
 
-				<!-- Footer Column -->
+				 Footer Column 
 				<div class="col-lg-3 footer_column">
 					<div class="footer_col">
 						<div class="footer_title">contact info</div>
@@ -1105,7 +1085,7 @@
 
 			</div>
 		</div>
-	</footer>
+	</footer>-->
 
 	<!-- Copyright -->
 
@@ -1115,11 +1095,11 @@
 				<div class="col-lg-3 order-lg-1 order-2  ">
 					<div class="copyright_content d-flex flex-row align-items-center">
 						<div><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Designed and Developed by <a href="https://cloudycode.cc" target="_blank">CloudyCode</a> and Collaboration of <a href="https://www.senikalanka.com/" target="_blank">Senika Lanka</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
 					</div>
 				</div>
-				<div class="col-lg-9 order-lg-2 order-1">
+<!--				<div class="col-lg-9 order-lg-2 order-1">
 					<div class="footer_nav_container d-flex flex-row align-items-center justify-content-lg-end">
 						<div class="footer_nav">
 							<ul class="footer_nav_list">
@@ -1131,7 +1111,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>

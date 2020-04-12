@@ -35,6 +35,7 @@
 	{
 		padding-top: 0px;
 	}
+        
 	.search
 	{
 		position: relative;
@@ -251,6 +252,11 @@
 		padding-top: 100px;
 		padding-bottom: 100px;
 	}
+        .hotel_image img
+        {
+                width: 100%;
+                display: inline;
+        }
 	.search_tabs_container
 	{
 		position: relative;
@@ -405,8 +411,12 @@
 	h1{font-size: 28px;}
 	.top_bar
 	{
-		display: none;
+/*		display: none;*/
+height: 80px;
 	}
+        .phone{
+            padding-top: 5px;
+        }
 	.button
 	{
 		height: 44px;
@@ -521,7 +531,7 @@
 	}
 	.hotel_title
 	{
-		font-size: 24px;
+		font-size: 40px;
 	}
 	.hotel_location
 	{

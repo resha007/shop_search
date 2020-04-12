@@ -83,6 +83,7 @@ $("#cmbDistrict").change(function() {
 });
 
 $("#add").click(function(){
+        $("#shopForm").submit();
 	action = "add";
 	sendData();
 });
@@ -130,7 +131,7 @@ function validate(){
 
     var elem = document.getElementById('shopForm').elements;
     for(var i = 0; i < elem.length; i++){
-    	if(elem[i].type != "button" && elem[i].type != "reset" && elem[i].id != "txtId" && elem[i].id != "txtOtherName" && elem[i].id != "txtCon2" && elem[i].id != "txtWhatsapp" && elem[i].id != "txtWeb" && elem[i].id != "txtFb" && elem[i].id != "txtEmail"){
+    	if(elem[i].type != "button" && elem[i].type != "reset" && elem[i].id != "txtUser" && elem[i].id != "txtId" && elem[i].id != "txtOtherName" && elem[i].id != "txtCon2" && elem[i].id != "txtWhatsapp" && elem[i].id != "txtWeb" && elem[i].id != "txtFb" && elem[i].id != "txtEmail" && elem[i].id != "txtFrom" && elem[i].id != "txtTo" && elem[i].id != "fileImg"){
             if(elem[i].value == '' || elem[i].value == '0'){
                 Toast.fire({
                     type: 'warning',
@@ -143,3 +144,26 @@ function validate(){
     	}
     }
 }
+
+//checks the code is already in the database
+$("#txtBR").change(function(){
+	var code = $("#txtBR").val().toUpperCase();
+        
+	$.ajax({
+            url		: './ShopServlet',
+            type	: 'GET',
+            data	: {"type":"tbl"},
+	    success: function(data) {
+	    	for (var i in data) {
+                    if(data[i]["brNo"]==code){
+                        Toast.fire({
+                            type: 'warning',
+                            title: 'This BR number is already available'
+                        });
+                        $("#txtBR").val("");
+                        $("#txtBR").focus();
+                    }
+	    	}
+	    }
+	});
+});

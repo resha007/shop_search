@@ -195,7 +195,7 @@ public class UserDetailsServlet extends HttpServlet {
                     response.setStatus(200);
                     response.getWriter().write(res.toString());
                     response.getWriter().close();System.out.println("######### jsp redirected1111 : ");
-                    response.sendRedirect("./index1.html");  System.out.println("######### jsp redirected2222 : ");
+                    getServletContext().getRequestDispatcher("/login/").forward(request, response);
             }catch(Exception e){
                     JSONObject res = new JSONObject();
                     res.put("success", MessageEnum.CREATE_FAILED_MESSAGE.getDescription());

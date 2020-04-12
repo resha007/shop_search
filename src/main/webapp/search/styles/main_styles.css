@@ -26,7 +26,7 @@
 	10.1 Testimonials Slider
 11. Trending
 12. Contact
-13. Footer
+13. Footerintro_price
 	13.1 Footer - About
 	13.2 Footer - Blog
 	13.3 Footer - Tags
@@ -244,7 +244,7 @@ section
 }
 .button
 {
-	display: inline-block;
+	display: block;
 	height: 53px;
 	border-radius: 27px;
 	overflow: hidden;
@@ -328,7 +328,7 @@ section
 .top_bar
 {
 	width: 100%;
-	height: 36px;
+	height: 60px;
 	background: #350a4e;
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
@@ -347,9 +347,10 @@ section
 	display: inline-block;
 	margin-right: 36px;
 	line-height: 36px;
-	font-size: 10px;
+	font-size: 40px;
 	font-weight: 600;
 	color: #FFFFFF;
+        padding-top: 10px;
 }
 .social_list_item
 {
@@ -394,7 +395,7 @@ section
 .user_box_link a
 {
 	display: block;
-	font-size: 10px;
+	font-size: 12px;
 	line-height: 36px;
 	font-weight: 600;
 	color: #FFFFFF;
@@ -421,7 +422,7 @@ section
 }
 .main_nav_col
 {
-	height: 143px;
+	height: 40px;
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
 	-ms-transition: all 400ms ease;
@@ -571,6 +572,10 @@ section
 	top: 105px;
 	visibility: visible;
 	opacity: 1;
+}
+
+.search_new{
+    display: block;
 }
 .search_content_input
 {
@@ -1090,7 +1095,7 @@ section
 	background-image: url(../images/dropdown.png);
 	background-position: center right;
 	background-repeat: no-repeat;
-	border: solid 1px #FFFFFF;
+	border: solid 1px #ffffff;
 	margin: 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -1128,7 +1133,31 @@ section
 	outline: none;
 	cursor: pointer;
 }
+
+.search_button_new
+{
+	font-size: 13px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	line-height: 53px;
+	padding-left: 46px;
+	padding-right: 46px;
+	background: #31124b;
+	-webkit-transform: translateY(15px);
+	-moz-transform: translateY(15px);
+	-ms-transform: translateY(15px);
+	-o-transform: translateY(15px);
+	transform: translateY(15px);
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
 .search_button:hover
+{
+	opacity: 0.8;
+}
+.search_button_new:hover
 {
 	opacity: 0.8;
 }
@@ -1233,6 +1262,51 @@ section
 	background: #fa9e1c;
 	border-radius: 14px;
 }
+
+.intro_date_new
+{
+	position: absolute;
+	top: -50px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width: auto;
+	padding-left: 39px;
+	padding-right: 39px;
+	white-space: nowrap;
+	font-size: 13px;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 20px;
+	background: #8F720F;
+	border-radius: 14px;
+        
+}
+.intro_date_new1
+{
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	width: auto;
+	padding-left: 39px;
+	padding-right: 39px;
+	white-space: nowrap;
+	font-size: 15px;
+	font-weight: 400;
+	color: #FFFFFF;
+	line-height: 20px;
+	background: #110068;
+	border-radius: 14px;
+        
+}
 .intro_button
 {
 	position: absolute;
@@ -1250,17 +1324,26 @@ section
 }
 .intro_center h1
 {
-	font-size: 59px;
-	font-weight: 700;
+	font-size: 40px;
+	font-weight: 600;
 	color: #FFFFFF;
 	letter-spacing: -0.05em;
+        line-height: 35px;   
 }
 .intro_price
 {
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 400;
 	color: #FFFFFF;
 	margin-top: -4px;
+}
+.intro_price_new
+{
+	font-size: 18px;
+	font-weight: 400;
+	color: #FFFFFF;
+	margin-top: -4px;
+        font-weight: bold;
 }
 .rating
 {

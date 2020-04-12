@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="area" class="com.shop.domain.Area" fetch="select">
+        <many-to-one name="area" class="com.shop.domain.Area" fetch="join">
             <column name="area_id" not-null="true" />
         </many-to-one>
-        <many-to-one name="category" class="com.shop.domain.Category" fetch="select">
+        <many-to-one name="category" class="com.shop.domain.Category" fetch="join">
             <column name="category_id" not-null="true" />
         </many-to-one>
         <many-to-one name="userDetails" class="com.shop.domain.UserDetails" fetch="select">

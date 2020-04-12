@@ -7,7 +7,9 @@ public enum RecordStatusEnum {
 	DEACTIVATE("DEACTIVATED", "Deactivated", "3"),
 	MODIFIED("MODIFIED", "Modified", "4"),
 	DELETED("DELETED", "Deleted", "5"),
-	REJECTED("REJECTED", "Rejected", "6");
+	REJECTED("REJECTED", "Rejected", "6"),
+        VERIFIED("VERIFIED", "Verified", "7"),
+        UNVERIFIED("UNVERIFIED", "Unverified", "8");
 	
 	private String code;
 	private String description;

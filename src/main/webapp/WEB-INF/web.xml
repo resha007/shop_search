@@ -28,6 +28,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.shop.servlet.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>com.shop.servlet.FileUploadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProvinceServlet</servlet-name>
         <url-pattern>/ProvinceServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/FileUploadServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="district" class="com.shop.domain.District" fetch="select">
+        <many-to-one name="district" class="com.shop.domain.District" fetch="join">
             <column name="district_id" not-null="true" />
         </many-to-one>
         <property name="code" type="string">

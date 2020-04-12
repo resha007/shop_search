@@ -37,7 +37,7 @@ public class ShopDAO {
 	}
 	
 	//edit Shop
-	public static Shop updateShop(Shop obj){
+	public static Shop updateShop(Shop obj){System.out.println("####### update dao");
 		try {
 			SessionUtill sessionUtill = new SessionUtill();
 			Session session =  sessionUtill.openSession();
@@ -83,7 +83,7 @@ public class ShopDAO {
 			Criteria criteria = session.createCriteria(Shop.class);
 			if(status=="a"){
 				criteria.add(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()));
-			}else if(status=="all"){
+			}else if(status=="all"){System.out.println("#########"+status);
 				criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
 			}
 			
@@ -123,6 +123,30 @@ public class ShopDAO {
 		return obj;
 	}
         
+        //get shop by id list
+	public static List<Shop> getShopByIdList(int id){
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+			
+			criteria.add(Restrictions.eq("id", id));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get all Shops:" + e.getCause());
+		}
+		return dataList;
+	}
+        
         //get cities of a district
 	public static List<Shop> getCitiesofDistrict(District district){
 		List<Shop> dataList = null;
@@ -146,8 +170,8 @@ public class ShopDAO {
 		return dataList;
 	}
         
-        //get Shop by id
-	public static List<Shop> searchShops(Province province,District district,Area area,Category category){
+        //shop search
+	public static List<Shop> searchShops(Province province,District district,Area area,Category category){System.out.println("##### distrct : "+category.getName());
 		List<Shop> dataList = null;
 		try {
 			SessionUtill sessionUtill = new SessionUtill();
@@ -155,7 +179,10 @@ public class ShopDAO {
 			session.beginTransaction();
 			
 			Criteria criteria = session.createCriteria(Shop.class);
-			criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("district", district)));
+                        
+                        criteria.add(Restrictions.and( Restrictions.eq("category", category), Restrictions.eq("area", area)));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
 			
 			dataList = criteria.list();
 			
@@ -164,7 +191,189 @@ public class ShopDAO {
 			sessionUtill.closeSession();
 			
 		} catch (Exception e) {
-			System.out.println("get districts of province:" + e.getCause());
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(District district,Area area,Category category){System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        //criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId())));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(Area area,Category category){//System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        //criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId())));
+                        
+			criteria.add(Restrictions.and( Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(Category category){//System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        criteria.add(Restrictions.and(Restrictions.eq("category", category)));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(Province province,District district){//System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        criteria.add(Restrictions.and( Restrictions.eq("area.district", district)));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(Province province){//System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        criteria.add(Restrictions.and(Restrictions.eq("area.district.province", province)));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(Province province,District district,Category category){//System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        criteria.add(Restrictions.and(Restrictions.eq("category", category)));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
+		}
+		return dataList;
+	}
+        
+        //shop search
+	public static List<Shop> searchShops(Province province,District district,Area area){//System.out.println("##### distrct : "+category.getName());
+		List<Shop> dataList = null;
+		try {
+			SessionUtill sessionUtill = new SessionUtill();
+			Session session =  sessionUtill.openSession();
+			session.beginTransaction();
+			
+			Criteria criteria = session.createCriteria(Shop.class);
+                        
+                        criteria.add(Restrictions.and(Restrictions.eq("area", area)));
+                        criteria.add(Restrictions.or(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()),Restrictions.eq("status", RecordStatusEnum.INACTIVE.getId())));
+			//criteria.add(Restrictions.and(Restrictions.eq("status", RecordStatusEnum.ACTIVE.getId()), Restrictions.eq("category", category), Restrictions.eq("area", area)));
+			
+			dataList = criteria.list();
+			
+			session.flush();
+			session.getTransaction().commit();
+			sessionUtill.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("get search :" + e.getCause());
 		}
 		return dataList;
 	}

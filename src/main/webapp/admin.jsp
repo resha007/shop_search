@@ -1,8 +1,9 @@
 <%-- 
-    Document   : shop
-    Created on : Apr 2, 2020, 10:15:43 AM
+    Document   : admin
+    Created on : Apr 6, 2020, 7:56:23 AM
     Author     : resha
 --%>
+
 <%@page import="com.shop.domain.UserDetails"%>
 <%
 	//clear the cache and redirect to the login page when session is not available
@@ -32,7 +33,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Register Your SHOP</title>
+    <title>Admin</title>
 
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
@@ -46,9 +47,12 @@
 
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
+   
+    
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 </head>
 
-<body>
+<body onload="dataLoad()">
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
@@ -56,10 +60,8 @@
                     <h2 class="title">Shop Registration Form</h2>
                     <h4>Hi, <%= userDetails.getFisrtName() %></h4><br>
                     <h6>(* required)</h6><br>
-<!--                    <form method="POST" id="shopForm">-->
-                    <form action="./FileUploadServlet" method="post" enctype="multipart/form-data" id="shopForm">
+                    <form method="POST" id="shopForm">
                          <input type="text" id="txtUser" name="txtUser" value="<%= userDetails.getId() %>" hidden>
-                         <input type="text" id="txtId" name="txtId" hidden>
                         <div class="input-group">
                             <div class="">
                                 <div class="input-group">
@@ -82,12 +84,12 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Business Registration Number*</label>
-                                    <input class="input--style-4" type="text" name="txtBR" id="txtBR" placeholder="NPVS43127" style="text-transform: uppercase">
+                                    <input class="input--style-4" type="text" name="txtBR" id="txtBR" placeholder="NPVS43127">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <label class="label">Category*</label>
-                                <div class="rs-select2 js-select-simple">
+                                <div class="rs-select2 ">
                                     <select name="cmbCategory" id="cmbCategory">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                     </select>
@@ -98,7 +100,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <label class="label">Province*</label>
-                                <div class="rs-select2 js-select-simple">
+                                <div class="rs-select2 ">
                                     <select name="cmbProvince" id="cmbProvince">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                         
@@ -108,7 +110,7 @@
                             </div>
                             <div class="col-2">
                                 <label class="label">District*</label>
-                                <div class="rs-select2 js-select-simple">
+                                <div class="rs-select2 ">
                                     <select name="cmbDistrict" id="cmbDistrict">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                         
@@ -120,7 +122,7 @@
                         <div class="row row-space">
                             <div class="col-2">
                                 <label class="label">Area*</label>
-                                <div class="rs-select2 js-select-simple">
+                                <div class="rs-select2 ">
                                     <select name="cmbArea" id="cmbArea">
                                         <option disabled="disabled" selected="selected">Choose option</option>
                                         
@@ -225,26 +227,120 @@
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Image(s)</label>
-                                    <input type='file' name='fileImg' id='fileImg' class='form-control' multiple/>
+                                <label class="label">Status*</label>
+                                <div class="rs-select2 ">
+                                    <select name="cmbStatus" id="cmbStatus">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        <option value="1">Verified</option>
+                                        <option value="2">Unverified</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
                                 </div>
                             </div>
                         </div>
-
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+<!--                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Birthday</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gender</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Male
+                                            <input type="radio" checked="checked" name="gender">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Female
+                                            <input type="radio" name="gender">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" type="email" name="email">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input class="input--style-4" type="text" name="phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label class="label">Subject</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="subject">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option>Subject 1</option>
+                                    <option>Subject 2</option>
+                                    <option>Subject 3</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>-->
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="button" id="add" name="add">Register</button>
+                            <button class="btn btn--radius-2 btn--blue" type="button" id="update" name="update">Update</button>
+                            <button class="btn btn--radius-2 btn--blue" type="button" id="delete" name="delete">Delete</button>
                             <button class="btn btn--radius-2 btn--blue" type="reset" id="reset" name="reset">Reset</button>
                         </div>
                     </form>
-<!--                         <form action="./FileUploadServlet" method="post" enctype="multipart/form-data" id="dataForm">
-                             <input type='file' name='fileImg' id='fileImg' class='form-control' multiple/>
-                             <button type="submit" class="btn btn--radius-2 btn--blue" id="add" name="add" ><i class="fa fa-chevron-right"></i>&nbsp;Submit</button>
-                         </form>-->
                 </div>
-            </div>
+                
+                <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title">Existing Cities</strong><br>
+                                <span style="font-size: 12px">(Click on the relevant row to <b>update or delete</b>)</span>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table1" class="display table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>BR Number</th>
+                                            <th>Category</th>
+                                            <th>Contact Number</th>
+                                            <th>Address</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        
+                        
+            </div>  
+                        
         </div>
     </div>
+                        
 
     <!-- Jquery JS-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -256,7 +352,19 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <!-- Main JS-->
     <script src="js/global.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="js/admin.js"></script>
+    
+<!--    <script src="js/lib/data-table/datatables.min.js"></script>
+    <script src="js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="js/lib/data-table/jszip.min.js"></script>
+    <script src="js/lib/data-table/vfs_fonts.js"></script>
+    <script src="js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="js/lib/data-table/buttons.print.min.js"></script>
+    <script src="js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="js/init/datatables-init.js"></script>-->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
